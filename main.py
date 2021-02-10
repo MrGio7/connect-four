@@ -21,7 +21,8 @@ while loop:
         if e.type == pygame.QUIT:
             loop = False
     
-    pygame.display.set_caption("Connect Four By MrGio7", icontitle=None)
-    window.screen.fill(BLACK)
+    pygame.display.set_caption("Connect Four By MrGio7")
+
+    window.draw_bg(BLACK, BLUE)
     
     pygame.display.update()
