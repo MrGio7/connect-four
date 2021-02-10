@@ -1,19 +1,9 @@
 import pygame
-from window import Window
+from pointer import Pointer
 
 pygame.init()
 
-window = Window()
-
-#COLORS
-WHITE = (255, 255, 255)
-RED = (255, 0, 0)
-YELLOW = (255, 255, 0)
-GREEN = (0, 255, 0)
-CYAN = (0, 255, 255)
-BLUE = (0, 0, 255)
-PINK = (255, 0, 255)
-BLACK = (0, 0, 0)
+pointer = Pointer()
 
 loop = True
 while loop:
@@ -23,6 +13,6 @@ while loop:
     
     pygame.display.set_caption("Connect Four By MrGio7")
 
-    window.draw_bg(BLACK, BLUE)
+    pointer.point_draw()
     
     pygame.display.update()
