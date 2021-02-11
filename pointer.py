@@ -26,3 +26,4 @@ class Pointer(Window):
         
         self.draw_bg()
         pygame.draw.circle(self.screen, (255, 0, 0), (self.row * 100 + 50, 50), 45, width=0)
+        print(self.circle)
