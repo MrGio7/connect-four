@@ -13,7 +13,8 @@ while loop:
     
     pygame.display.set_caption("Connect Four By MrGio7")
 
-    gameplay.score_check()
+    
     gameplay.gameplay()
+    gameplay.score_check()
     
     pygame.display.update()

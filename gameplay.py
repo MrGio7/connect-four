@@ -13,37 +13,38 @@ class Gameplay(Pointer):
         self.winner = 0
 
     def gameplay(self):
-        key = pygame.mouse.get_pressed()
-        self.response += 1
-        if key == (1, 0, 0) and self.response > 500:
-            for r in range(self.rows):
-                if self.body[r][self.column] == 0:
-                    self.draw_id += 1
-            if self.turn == 1:
-                self.body[self.draw_id][self.column] = 1
-                self.draw_id = -1
-                self.response = 0
-                self.turn = 2
-            elif self.turn == 2:
-                self.body[self.draw_id][self.column] = 2
-                self.draw_id = -1
-                self.response = 0
-                self.turn = 1
-            print(self.body)
+        if self.winner == 0:
+            key = pygame.mouse.get_pressed()
+            self.response += 1
+            if key == (1, 0, 0) and self.response > 500:
+                for r in range(self.rows):
+                    if self.body[r][self.column] == 0:
+                        self.draw_id += 1
+                if self.turn == 1:
+                    self.body[self.draw_id][self.column] = 1
+                    self.draw_id = -1
+                    self.response = 0
+                    self.turn = 2
+                elif self.turn == 2:
+                    self.body[self.draw_id][self.column] = 2
+                    self.draw_id = -1
+                    self.response = 0
+                    self.turn = 1
+                print(self.body)
 
-        self.point_draw()
-        for r in range(self.rows):
-            for c in range(self.columns):
-                posx = c * 100
-                posy = r * 100
-                if self.body[r][c] == 0:
-                    pass
-                elif self.body[r][c] == 1:
-                    pygame.draw.circle(self.screen, self.RED, (posx + 50, posy + 150), 45, width=0)
-                elif self.body[r][c] == 2:
-                    pygame.draw.circle(self.screen, self.YELLOW, (posx + 50, posy + 150), 45, width=0)
-                else:
-                    pass
+            self.point_draw()
+            for r in range(self.rows):
+                for c in range(self.columns):
+                    posx = c * 100
+                    posy = r * 100
+                    if self.body[r][c] == 0:
+                        pass
+                    elif self.body[r][c] == 1:
+                        pygame.draw.circle(self.screen, self.RED, (posx + 50, posy + 150), 45, width=0)
+                    elif self.body[r][c] == 2:
+                        pygame.draw.circle(self.screen, self.YELLOW, (posx + 50, posy + 150), 45, width=0)
+                    else:
+                        pass
 
     def score_check(self):
         for r in range(self.rows - 3):
@@ -75,3 +76,14 @@ class Gameplay(Pointer):
             for c in range(self.columns - 3):
                 if self.body[r][c] == 2 and self.body[r + 1][c + 1] == 2 and self.body[r + 2][c + 2] == 2 and self.body[r + 3][c + 3] == 2:
                     self.winner = 2
+
+        if self.winner == 0:
+            pass
+        elif self.winner == 1:
+            font = pygame.font.SysFont(None, 75)
+            text = font.render("Winner Player 1", True, self.RED)
+            self.screen.blit(text, (150, 25), area=None, special_flags = 0)
+        elif self.winner == 1:
+            font = pygame.font.SysFont(None, 75)
+            text = font.render("Winner Player 2", True, self.YELLOW)
+            self.screen.blit(text, (150, 25))
