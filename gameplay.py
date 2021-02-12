@@ -10,7 +10,7 @@ class Gameplay(Pointer):
         self.body = np.zeros((self.rows, self.columns))
         self.draw_id = -1
         self.response = 0
-        self.turn = 1
+        self.winner = 0
 
     def gameplay(self):
         key = pygame.mouse.get_pressed()
@@ -44,3 +44,34 @@ class Gameplay(Pointer):
                     pygame.draw.circle(self.screen, self.YELLOW, (posx + 50, posy + 150), 45, width=0)
                 else:
                     pass
+
+    def score_check(self):
+        for r in range(self.rows - 3):
+            for c in range(self.columns):
+                if self.body[r][c] == 1 and self.body[r + 1][c] == 1 and self.body[r + 2][c] == 1 and self.body[r + 3][c] == 1:
+                    self.winner = 1
+                
+        for r in range(self.rows - 3):
+            for c in range(self.columns):
+                if self.body[r][c] == 2 and self.body[r + 1][c] == 2 and self.body[r + 2][c] == 2 and self.body[r + 3][c] == 2:
+                    self.winner = 2    
+
+        for r in range(self.rows):
+            for c in range(self.columns - 3):
+                if self.body[r][c] == 1 and self.body[r][c + 1] == 1 and self.body[r][c + 2] == 1 and self.body[r][c + 3] == 1:
+                    self.winner = 1
+
+        for r in range(self.rows):
+            for c in range(self.columns - 3):
+                if self.body[r][c] == 2 and self.body[r][c + 1] == 2 and self.body[r][c + 2] == 2 and self.body[r][c + 3] == 2:
+                    self.winner = 2
+
+        for r in range(self.rows - 3):
+            for c in range(self.columns - 3):
+                if self.body[r][c] == 1 and self.body[r + 1][c + 1] == 1 and self.body[r + 2][c + 2] == 1 and self.body[r + 3][c + 3] == 1:
+                    self.winner = 1
+
+        for r in range(self.rows - 3):
+            for c in range(self.columns - 3):
+                if self.body[r][c] == 2 and self.body[r + 1][c + 1] == 2 and self.body[r + 2][c + 2] == 2 and self.body[r + 3][c + 3] == 2:
+                    self.winner = 2

@@ -6,6 +6,7 @@ class Pointer(Window):
         super().__init__()
         self.pos = (0, 0)
         self.column = 0
+        self.turn = 1
 
     def point_draw(self):
         self.pos = pygame.mouse.get_pos()
@@ -25,4 +26,7 @@ class Pointer(Window):
             self.column = 6
         
         self.draw_bg()
-        pygame.draw.circle(self.screen, (255, 0, 0), (self.column * 100 + 50, 50), 45, width=0)
+        if self.turn == 1:
+            pygame.draw.circle(self.screen, self.RED, (self.column * 100 + 50, 50), 45, width=0)
+        elif self.turn == 2:
+            pygame.draw.circle(self.screen, self.YELLOW, (self.column * 100 + 50, 50), 45, width=0)
