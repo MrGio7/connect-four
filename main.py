@@ -1,9 +1,9 @@
 import pygame
-from pointer import Pointer
+from gameplay import Gameplay
 
 pygame.init()
 
-pointer = Pointer()
+gameplay = Gameplay()
 
 loop = True
 while loop:
@@ -13,6 +13,6 @@ while loop:
     
     pygame.display.set_caption("Connect Four By MrGio7")
 
-    pointer.point_draw()
+    gameplay.gameplay()
     
     pygame.display.update()
