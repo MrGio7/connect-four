@@ -30,7 +30,6 @@ class Gameplay(Pointer):
                     self.draw_id = -1
                     self.response = 0
                     self.turn = 1
-                print(self.body)
 
             self.point_draw()
             for r in range(self.rows):
@@ -77,13 +76,23 @@ class Gameplay(Pointer):
                 if self.body[r][c] == 2 and self.body[r + 1][c + 1] == 2 and self.body[r + 2][c + 2] == 2 and self.body[r + 3][c + 3] == 2:
                     self.winner = 2
 
+        for r in range(self.rows - 3):
+            for c in range(3, self.columns):
+                if self.body[r][c] == 2 and self.body[r - 1][c + 1] == 2 and self.body[r - 2][c + 2] == 2 and self.body[r - 3][c + 3] == 2:
+                    self.winner = 2
+
+        for r in range(self.rows - 3):
+            for c in range(3, self.columns):
+                if self.body[r][c] == 1 and self.body[r - 1][c + 1] == 1 and self.body[r - 2][c + 2] == 1 and self.body[r - 3][c + 3] == 1:
+                    self.winner = 1
+
         if self.winner == 0:
             pass
         elif self.winner == 1:
             font = pygame.font.SysFont(None, 75)
             text = font.render("Winner Player 1", True, self.RED)
-            self.screen.blit(text, (150, 25), area=None, special_flags = 0)
-        elif self.winner == 1:
+            self.screen.blit(text, (150, 25))
+        elif self.winner == 2:
             font = pygame.font.SysFont(None, 75)
             text = font.render("Winner Player 2", True, self.YELLOW)
             self.screen.blit(text, (150, 25))
